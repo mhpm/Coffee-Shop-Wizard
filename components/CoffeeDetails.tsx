@@ -13,7 +13,7 @@ interface CoffeeDetailsProps {
   onBack: () => void;
 }
 
-const CoffeeDetails: React.FC<CoffeeDetailsProps> = ({ coffee, onBack }) => {
+const CoffeeDetails: React.FC<CoffeeDetailsProps> = ({ coffee }) => {
   return (
     <div>
       <div className="relative h-72 md:h-96 rounded-2xl overflow-hidden">

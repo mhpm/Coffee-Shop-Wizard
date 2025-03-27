@@ -1,9 +1,6 @@
 import Button from '@/components/button';
-import React from 'react';
 
-type Props = {};
-
-const CatalogPage = (props: Props) => {
+const CatalogPage = () => {
   return (
     <div className="p-5 flex justify-center items-center h-screen">
       <div className="flex items-start flex-wrap justify-center gap-5">

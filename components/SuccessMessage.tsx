@@ -23,7 +23,8 @@ const SuccessMessage: React.FC<SuccessMessageProps> = ({ onReset }) => {
       </div>
       <h2 className="text-2xl font-bold mb-2">Order Placed Successfully!</h2>
       <p className="text-gray-600 dark:text-gray-300 mb-8 max-w-md">
-        Your coffee is being prepared. You'll receive a notification when it's ready for pickup.
+        Your coffee is being prepared. You&apos;ll receive a notification when
+        it&apos;s ready for pickup.
       </p>
       <button
         onClick={onReset}
