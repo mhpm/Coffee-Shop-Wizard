@@ -1,8 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js with Tailwind CSS 4
+
+This project combines the power of [Next.js](https://nextjs.org) with [Tailwind CSS 4](https://tailwindcss.com/) to create beautiful, responsive web applications with minimal effort. The project was bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app) and enhanced with Tailwind CSS 4 utilities.
+
+## Features
+
+- **Next.js 15** - The latest version with App Router
+
+- **Tailwind CSS 4** - Utility-first CSS framework
+- **TypeScript** - Type safety for your JavaScript code
+- **Custom Components** - Pre-built components with variants using class-variance-authority
+- **Responsive Design** - Mobile-first approach for all screen sizes
 
 ## Getting Started
 
-First, run the development server:
+First, install the dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
@@ -16,21 +37,34 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `/app` - Next.js App Router pages and layouts
+- `/components` - Reusable UI components with Tailwind CSS integration
+- `/public` - Static assets like images and icons
+
+## Customization
+
+This project uses custom theme variables defined in `app/globals.css` to extend Tailwind CSS's default theme. You can modify these variables to match your brand colors and design preferences.
 
 ## Learn More
 
+### About Tailwind CSS 4
+
+[Tailwind CSS](https://tailwindcss.com/) is a utility-first CSS framework that allows you to build modern websites without ever leaving your HTML. Learn more:
+
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs) - Learn about Tailwind CSS features and configuration
+- [Tailwind CSS Components](https://tailwindcss.com/docs/installation) - Build your own components with utility classes
+
+### About Next.js
+
 To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Next.js Documentation](https://nextjs.org/docs) - Learn about Next.js features and API
+- [Learn Next.js](https://nextjs.org/learn) - An interactive Next.js tutorial
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
+## Deployment
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
