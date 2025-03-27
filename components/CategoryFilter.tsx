@@ -9,7 +9,16 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({
   selectedCategory, 
   setSelectedCategory 
 }) => {
-  const categories = ['All', 'Espresso', 'Latte', 'Cappuccino', 'Mocha'];
+  const categories = [
+    'All', 
+    'Espresso', 
+    'Latte', 
+    'Cappuccino', 
+    'Mocha',
+    'Cold Drinks',
+    'Tea',
+    'Specialty'
+  ];
   
   return (
     <div className="flex space-x-2 mt-4 overflow-x-auto pb-2 scrollbar-hide md:flex-wrap md:gap-2">

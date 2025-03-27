@@ -10,81 +10,15 @@ import SearchBar from '@/components/SearchBar';
 import CategoryFilter from '@/components/CategoryFilter';
 import CustomizationPanel from '@/components/CustomizationPanel';
 import CheckoutButton from '@/components/CheckoutButton';
-
-// Types moved to a separate file but included here for reference
-interface Coffee {
-  id: number;
-  name: string;
-  price: number;
-  description: string;
-  image: string;
-  bgColor: string;
-}
-
-interface Extra {
-  id: number;
-  name: string;
-  price: number;
-}
-
-// Data could also be moved to a separate file
-const coffees = [
-  {
-    id: 1,
-    name: 'Espresso',
-    price: 2.99,
-    description: 'Strong and concentrated coffee served in a small cup',
-    image:
-      'https://images.unsplash.com/photo-1610889556528-9a770e32642f?q=80&w=500&auto=format',
-    bgColor: 'from-amber-800/80 to-amber-600/80',
-  },
-  {
-    id: 2,
-    name: 'Cappuccino',
-    price: 3.99,
-    description: 'Espresso with steamed milk and foam',
-    image:
-      'https://images.unsplash.com/photo-1572442388796-11668a67e53d?q=80&w=500&auto=format',
-    bgColor: 'from-amber-700/80 to-amber-500/80',
-  },
-  {
-    id: 3,
-    name: 'Latte',
-    price: 4.49,
-    description:
-      'Espresso with a lot of steamed milk and a light layer of foam',
-    image:
-      'https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?q=80&w=500&auto=format',
-    bgColor: 'from-amber-600/80 to-amber-400/80',
-  },
-  {
-    id: 4,
-    name: 'Mocha',
-    price: 4.99,
-    description: 'Espresso with chocolate, steamed milk and whipped cream',
-    image:
-      'https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?q=80&w=500&auto=format',
-    bgColor: 'from-amber-900/80 to-amber-700/80',
-  },
-];
-
-const sizes = [
-  { id: 1, name: 'Small', price: 0 },
-  { id: 2, name: 'Medium', price: 0.5 },
-  { id: 3, name: 'Large', price: 1 },
-];
-
-const milkTypes = [
-  { id: 1, name: 'Whole Milk', price: 0 },
-  { id: 2, name: 'Almond Milk', price: 0.5 },
-  { id: 3, name: 'Oat Milk', price: 0.5 },
-];
-
-const extras = [
-  { id: 1, name: 'Whipped Cream', price: 0.5 },
-  { id: 2, name: 'Caramel Drizzle', price: 0.5 },
-  { id: 3, name: 'Extra Shot', price: 1 },
-];
+import { 
+  Coffee, 
+  Extra, 
+  coffees, 
+  sizes, 
+  milkTypes, 
+  extras,
+  categoryMapping 
+} from '@/data/coffeeData';
 
 export default function Home() {
   const [selectedCoffee, setSelectedCoffee] = useState<Coffee | null>(null);
@@ -116,8 +50,19 @@ export default function Home() {
       coffee.description.toLowerCase().includes(searchQuery.toLowerCase());
 
     // Then check if it matches the selected category
-    const matchesCategory =
-      selectedCategory === 'All' || coffee.name === selectedCategory;
+    let matchesCategory = selectedCategory === 'All';
+
+    if (!matchesCategory) {
+      if (selectedCategory === 'Cold Drinks') {
+        matchesCategory = categoryMapping['Cold Drinks'].includes(coffee.name);
+      } else if (selectedCategory === 'Tea') {
+        matchesCategory = categoryMapping['Tea'].includes(coffee.name);
+      } else if (selectedCategory === 'Specialty') {
+        matchesCategory = categoryMapping['Specialty'].includes(coffee.name);
+      } else {
+        matchesCategory = coffee.name === selectedCategory;
+      }
+    }
 
     return matchesSearch && matchesCategory;
   });
@@ -179,7 +124,7 @@ export default function Home() {
                 onBack={() => setSelectedCoffee(null)}
               />
             </div>
-            
+
             <div className="space-y-6 pb-24 md:pb-0">
               <CustomizationPanel
                 quantity={quantity}
@@ -195,22 +140,22 @@ export default function Home() {
                 selectedExtras={selectedExtras}
                 toggleExtra={toggleExtra}
               />
-              
+
               {/* Desktop checkout button */}
               <div className="hidden md:block mt-6">
-                <CheckoutButton 
-                  total={calculateTotal()} 
-                  onClick={() => setShowConfirmation(true)} 
+                <CheckoutButton
+                  total={calculateTotal()}
+                  onClick={() => setShowConfirmation(true)}
                 />
               </div>
             </div>
-            
+
             {/* Mobile checkout button */}
             <div className="fixed md:hidden bottom-0 left-0 right-0 p-4 bg-white dark:bg-neutral-800 border-t border-gray-200 dark:border-neutral-700">
               <div className="max-w-md mx-auto">
-                <CheckoutButton 
-                  total={calculateTotal()} 
-                  onClick={() => setShowConfirmation(true)} 
+                <CheckoutButton
+                  total={calculateTotal()}
+                  onClick={() => setShowConfirmation(true)}
                 />
               </div>
             </div>
@@ -218,26 +163,26 @@ export default function Home() {
         ) : (
           <div>
             <div className="mb-6 md:max-w-xl md:mx-auto">
-              <SearchBar 
-                searchQuery={searchQuery} 
-                setSearchQuery={setSearchQuery} 
+              <SearchBar
+                searchQuery={searchQuery}
+                setSearchQuery={setSearchQuery}
               />
-              
-              <CategoryFilter 
-                selectedCategory={selectedCategory} 
-                setSelectedCategory={setSelectedCategory} 
+
+              <CategoryFilter
+                selectedCategory={selectedCategory}
+                setSelectedCategory={setSelectedCategory}
               />
             </div>
 
-            <h2 className="text-xl font-bold mb-4 md:max-w-xl md:mx-auto">
+            <h2 className="text-xl font-bold mb-4 md:max-w-xl md:mx-auto text-gray-900 dark:text-white">
               {searchQuery ? 'Search Results' : 'Popular Coffees'}
               {filteredCoffees.length === 0 && (
-                <span className="text-sm font-normal text-gray-500 ml-2">
+                <span className="text-sm font-normal text-gray-600 dark:text-gray-300 ml-2">
                   No results found
                 </span>
               )}
             </h2>
-            
+
             <div className="md:max-w-4xl md:mx-auto">
               <CoffeeGrid
                 coffees={filteredCoffees}
