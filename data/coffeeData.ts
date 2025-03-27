@@ -85,7 +85,7 @@ export const coffees: Coffee[] = [
     description:
       'Espresso with a small amount of foamed milk. "Macchiato" means "marked" in Italian, referring to the mark that the small amount of steamed milk leaves on top of the espresso. Perfect for those who want just a touch of milk to cut the intensity of straight espresso.',
     image:
-      'https://images.unsplash.com/photo-1534687941688-13b0d50a428f?q=80&w=500&auto=format',
+      'https://images.unsplash.com/photo-1485808191679-5f86510681a2?q=80&w=500&auto=format',
     bgColor: 'from-amber-700/80 to-amber-500/80',
   },
   {
