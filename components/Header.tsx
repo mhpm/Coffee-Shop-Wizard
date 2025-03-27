@@ -1,52 +1,79 @@
 import React from 'react';
+import ThemeToggle from './ThemeToggle';
 
 interface HeaderProps {
   title: string;
-  showBackButton: boolean;
-  onBack: () => void;
+  showBackButton?: boolean;
+  onBack?: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ title, showBackButton, onBack }) => {
+const Header: React.FC<HeaderProps> = ({
+  title,
+  showBackButton = false,
+  onBack,
+}) => {
   return (
-    <div className="flex items-center justify-between mb-6">
+    <header className="flex items-center justify-between py-4 mb-6">
       <div className="flex items-center">
         {showBackButton && (
           <button
             onClick={onBack}
-            className="p-2 mr-2 rounded-full bg-white dark:bg-neutral-800 shadow-sm hover:bg-gray-100 dark:hover:bg-neutral-700 transition-colors"
+            className="mr-3 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-neutral-700"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
               fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
               stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-5 h-5 text-gray-800 dark:text-white"
+              className="w-5 h-5"
             >
-              <path d="M19 12H5M12 19l-7-7 7-7" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+              />
             </svg>
           </button>
         )}
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{title}</h1>
+        <h1 className="text-2xl font-bold text-foreground">{title}</h1>
       </div>
-      <button className="p-2 rounded-full bg-white dark:bg-neutral-800 shadow-sm hover:bg-gray-100 dark:hover:bg-neutral-700 transition-colors">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="w-5 h-5 text-gray-800 dark:text-white"
-        >
-          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-          <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-        </svg>
-      </button>
-    </div>
+      <div className="flex items-center space-x-2">
+        <ThemeToggle />
+        <button className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-neutral-700">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-6 h-6 text-foreground/80"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+            />
+          </svg>
+        </button>
+        <button className="p-2 rounded-full bg-primary text-primary-foreground">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-6 h-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
+            />
+          </svg>
+        </button>
+      </div>
+    </header>
   );
 };
 

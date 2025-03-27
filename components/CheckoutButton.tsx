@@ -15,7 +15,7 @@ const CheckoutButton: React.FC<CheckoutButtonProps> = ({ total, onClick }) => {
         <p className="text-xl font-bold">${total}</p>
       </div>
       <button
-        className="px-6 py-3 bg-amber-500 text-white rounded-xl shadow-lg hover:bg-amber-600 transition-colors font-medium"
+        className="px-6 py-3 bg-primary text-primary-foreground rounded-xl shadow-lg hover:bg-primary/90 transition-colors font-medium"
         onClick={onClick}
       >
         Checkout

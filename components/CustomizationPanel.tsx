@@ -1,22 +1,5 @@
 import React from 'react';
-
-interface Size {
-  id: number;
-  name: string;
-  price: number;
-}
-
-interface MilkType {
-  id: number;
-  name: string;
-  price: number;
-}
-
-interface Extra {
-  id: number;
-  name: string;
-  price: number;
-}
+import { Size, MilkType, Extra } from '@/data/coffeeData';
 
 interface CustomizationPanelProps {
   quantity: number;
@@ -100,7 +83,7 @@ const CustomizationPanel: React.FC<CustomizationPanelProps> = ({
               key={size.id}
               className={`py-3 rounded-xl transition-all ${
                 selectedSize.id === size.id
-                  ? 'bg-amber-500 text-white shadow-md scale-105'
+                  ? 'bg-primary text-primary-foreground shadow-md scale-105'
                   : 'bg-white dark:bg-neutral-700 shadow-sm hover:bg-gray-100 dark:hover:bg-neutral-600'
               }`}
               onClick={() => setSelectedSize(size)}
@@ -123,7 +106,7 @@ const CustomizationPanel: React.FC<CustomizationPanelProps> = ({
               key={milk.id}
               className={`w-full py-3 px-4 rounded-xl text-left transition-all flex justify-between items-center ${
                 selectedMilk.id === milk.id
-                  ? 'bg-amber-500 text-white shadow-md'
+                  ? 'bg-primary text-primary-foreground shadow-md'
                   : 'bg-white dark:bg-neutral-700 shadow-sm hover:bg-gray-100 dark:hover:bg-neutral-600'
               }`}
               onClick={() => setSelectedMilk(milk)}
@@ -146,7 +129,7 @@ const CustomizationPanel: React.FC<CustomizationPanelProps> = ({
               key={extra.id}
               className={`w-full py-3 px-4 rounded-xl text-left transition-all flex justify-between items-center ${
                 selectedExtras.some((e) => e.id === extra.id)
-                  ? 'bg-amber-500 text-white shadow-md'
+                  ? 'bg-primary text-primary-foreground shadow-md'
                   : 'bg-white dark:bg-neutral-700 shadow-sm hover:bg-gray-100 dark:hover:bg-neutral-600'
               }`}
               onClick={() => toggleExtra(extra)}
@@ -164,7 +147,7 @@ const CustomizationPanel: React.FC<CustomizationPanelProps> = ({
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
                       fill="currentColor"
-                      className="w-3 h-3 text-amber-500"
+                      className="w-3 h-3 text-primary"
                     >
                       <path
                         fillRule="evenodd"

@@ -94,7 +94,7 @@ export default function Home() {
     setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-white to-amber-50 dark:from-neutral-900 dark:to-neutral-800">
+    <main className="min-h-screen bg-gradient-to-b from-background to-primary/5 dark:from-background dark:to-background">
       <div className="mx-auto p-4 max-w-md md:max-w-4xl">
         <Header
           title={selectedCoffee ? selectedCoffee.name : 'Kumpul Coffee'}
@@ -151,7 +151,7 @@ export default function Home() {
             </div>
 
             {/* Mobile checkout button */}
-            <div className="fixed md:hidden bottom-0 left-0 right-0 p-4 bg-white dark:bg-neutral-800 border-t border-gray-200 dark:border-neutral-700">
+            <div className="fixed md:hidden bottom-0 left-0 right-0 p-4 bg-card dark:bg-card border-t border-border">
               <div className="max-w-md mx-auto">
                 <CheckoutButton
                   total={calculateTotal()}
@@ -174,10 +174,10 @@ export default function Home() {
               />
             </div>
 
-            <h2 className="text-xl font-bold mb-4 md:max-w-xl md:mx-auto text-gray-900 dark:text-white">
+            <h2 className="text-xl font-bold mb-4 md:max-w-xl md:mx-auto text-foreground">
               {searchQuery ? 'Search Results' : 'Popular Coffees'}
               {filteredCoffees.length === 0 && (
-                <span className="text-sm font-normal text-gray-600 dark:text-gray-300 ml-2">
+                <span className="text-sm font-normal text-muted-foreground ml-2">
                   No results found
                 </span>
               )}

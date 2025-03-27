@@ -4,17 +4,17 @@
   --font-display: 'Satoshi', 'sans-serif';
   --breakpoint-3xl: 120rem;
 
-  /* Primary Colors */
-  --color-primary: oklch(0.84 0.18 117.33);
-  --color-primary-100: oklch(0.99 0 0);
-  --color-primary-200: oklch(0.98 0.04 113.22);
-  --color-primary-300: oklch(0.94 0.11 115.03);
-  --color-primary-400: oklch(0.92 0.19 114.08);
-  --color-primary-500: oklch(0.84 0.18 117.33);
-  --color-primary-600: oklch(0.53 0.12 118.34);
-  --color-primary-700: oklch(0.43 0.15 118.34);
-  --color-primary-800: oklch(0.33 0.18 118.34);
-  --color-primary-900: oklch(0.23 0.21 118.34);
+  /* Primary Colors - Amber theme */
+  --color-primary: oklch(0.74 0.16 80); /* Amber-500 equivalent */
+  --color-primary-100: oklch(0.97 0.06 80);
+  --color-primary-200: oklch(0.94 0.09 80);
+  --color-primary-300: oklch(0.88 0.12 80);
+  --color-primary-400: oklch(0.81 0.14 80);
+  --color-primary-500: oklch(0.74 0.16 80); /* Base amber color */
+  --color-primary-600: oklch(0.67 0.18 80);
+  --color-primary-700: oklch(0.6 0.2 80);
+  --color-primary-800: oklch(0.53 0.22 80);
+  --color-primary-900: oklch(0.46 0.24 80);
 
   /* Secondary Colors (Grayscale) */
   --color-secondary: oklch(0.8 0 0); /* Neutral gray */
@@ -54,4 +54,91 @@
 
   --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
   --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 20 14.3% 4.1%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 20 14.3% 4.1%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 14.3% 4.1%;
+
+    --primary: 38 92% 50%;
+    --primary-foreground: 60 9.1% 97.8%;
+
+    --secondary: 60 4.8% 95.9%;
+    --secondary-foreground: 24 9.8% 10%;
+
+    --muted: 60 4.8% 95.9%;
+    --muted-foreground: 25 5.3% 44.7%;
+
+    --accent: 60 4.8% 95.9%;
+    --accent-foreground: 24 9.8% 10%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 60 9.1% 97.8%;
+
+    --border: 20 5.9% 90%;
+    --input: 20 5.9% 90%;
+    --ring: 38 92% 50%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 20 14.3% 4.1%;
+    --foreground: 60 9.1% 97.8%;
+
+    --card: 20 14.3% 4.1%;
+    --card-foreground: 60 9.1% 97.8%;
+
+    --popover: 20 14.3% 4.1%;
+    --popover-foreground: 60 9.1% 97.8%;
+
+    --primary: 38 92% 50%;
+    --primary-foreground: 60 9.1% 97.8%;
+
+    --secondary: 12 6.5% 15.1%;
+    --secondary-foreground: 60 9.1% 97.8%;
+
+    --muted: 12 6.5% 15.1%;
+    --muted-foreground: 24 5.4% 63.9%;
+
+    --accent: 12 6.5% 15.1%;
+    --accent-foreground: 60 9.1% 97.8%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 60 9.1% 97.8%;
+
+    --border: 12 6.5% 15.1%;
+    --input: 12 6.5% 15.1%;
+    --ring: 38 92% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-[hsl(var(--border))];
+  }
+  body {
+    @apply bg-[hsl(var(--background))] text-[hsl(var(--foreground))];
+  }
+  button,
+  a {
+    @apply transition-colors duration-200;
+  }
+}
+
+/* Custom animation utilities */
+@layer utilities {
+  .transition-ease-fluid {
+    transition-timing-function: cubic-bezier(0.3, 0, 0, 1);
+  }
+  .transition-ease-snappy {
+    transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+  }
 }
