@@ -1,30 +1,4 @@
-// Types for coffee shop data
-export interface Coffee {
-  id: number;
-  name: string;
-  price: number;
-  description: string;
-  image: string;
-  bgColor: string;
-}
-
-export interface Size {
-  id: number;
-  name: string;
-  price: number;
-}
-
-export interface MilkType {
-  id: number;
-  name: string;
-  price: number;
-}
-
-export interface Extra {
-  id: number;
-  name: string;
-  price: number;
-}
+import { Coffee, Size, MilkType, Extra, CategoryMapping } from '@/types/coffee';
 
 // Coffee data
 export const coffees: Coffee[] = [
@@ -192,7 +166,7 @@ export const extras: Extra[] = [
 ];
 
 // Category mapping for filtering
-export const categoryMapping = {
+export const categoryMapping: CategoryMapping = {
   'Cold Drinks': ['Cold Brew', 'Iced Coffee', 'Caramel Frappuccino'],
   Tea: ['Chai Latte', 'Matcha Latte'],
   Specialty: ['Affogato', 'Hot Chocolate'],

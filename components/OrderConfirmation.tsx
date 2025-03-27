@@ -1,16 +1,11 @@
 import React from 'react';
 import Image from 'next/image';
-
-interface Extra {
-  id: number;
-  name: string;
-  price: number;
-}
+import { Coffee, Extra, MilkType, Size } from '@/types/coffee';
 
 interface OrderConfirmationProps {
-  coffee: any;
-  size: any;
-  milk: any;
+  coffee: Coffee;
+  size: Size;
+  milk: MilkType;
   extras: Extra[];
   quantity: number;
   total: string;
@@ -31,7 +26,7 @@ const OrderConfirmation: React.FC<OrderConfirmationProps> = ({
   return (
     <div className="bg-white dark:bg-neutral-800 rounded-2xl p-6 shadow-lg">
       <h3 className="text-xl font-bold mb-6">Order Summary</h3>
-      
+
       {coffee && (
         <div className="flex items-center mb-6">
           <div className="relative w-20 h-20 rounded-xl overflow-hidden">
@@ -53,23 +48,29 @@ const OrderConfirmation: React.FC<OrderConfirmationProps> = ({
           </div>
         </div>
       )}
-      
+
       <div className="space-y-4 p-4 rounded-xl bg-gray-50 dark:bg-neutral-700">
         <div className="flex justify-between">
           <span className="text-gray-600 dark:text-gray-300">Subtotal</span>
-          <span className="font-medium">${coffee?.price.toFixed(2) || '0.00'}</span>
+          <span className="font-medium">
+            ${coffee?.price.toFixed(2) || '0.00'}
+          </span>
         </div>
-        
+
         <div className="flex justify-between">
-          <span className="text-gray-600 dark:text-gray-300">Size ({size.name})</span>
+          <span className="text-gray-600 dark:text-gray-300">
+            Size ({size.name})
+          </span>
           <span className="font-medium">${size.price.toFixed(2)}</span>
         </div>
-        
+
         <div className="flex justify-between">
-          <span className="text-gray-600 dark:text-gray-300">Milk ({milk.name})</span>
+          <span className="text-gray-600 dark:text-gray-300">
+            Milk ({milk.name})
+          </span>
           <span className="font-medium">${milk.price.toFixed(2)}</span>
         </div>
-        
+
         {extras.length > 0 && (
           <div>
             <span className="text-gray-600 dark:text-gray-300">Extras:</span>
@@ -83,14 +84,14 @@ const OrderConfirmation: React.FC<OrderConfirmationProps> = ({
             </ul>
           </div>
         )}
-        
+
         <div className="pt-3 border-t border-gray-200 dark:border-gray-600">
           <div className="flex justify-between">
             <span className="text-gray-600 dark:text-gray-300">Quantity</span>
             <span className="font-medium">x{quantity}</span>
           </div>
         </div>
-        
+
         <div className="pt-3 border-t border-gray-200 dark:border-gray-600">
           <div className="flex justify-between text-lg font-bold">
             <span>Total</span>
@@ -98,7 +99,7 @@ const OrderConfirmation: React.FC<OrderConfirmationProps> = ({
           </div>
         </div>
       </div>
-      
+
       <div className="flex gap-4 mt-6">
         <button
           className="flex-1 px-4 py-3 rounded-xl border border-amber-500 text-amber-500 font-medium hover:bg-amber-50 dark:hover:bg-neutral-700 transition-colors"

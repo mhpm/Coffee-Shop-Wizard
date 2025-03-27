@@ -1,5 +1,5 @@
 import React from 'react';
-import { Size, MilkType, Extra } from '@/data/coffeeData';
+import { Size, MilkType, Extra } from '@/types/coffee';
 
 interface CustomizationPanelProps {
   quantity: number;
@@ -48,7 +48,11 @@ const CustomizationPanel: React.FC<CustomizationPanelProps> = ({
               stroke="currentColor"
               className="w-5 h-5"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12h-15" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M19.5 12h-15"
+              />
             </svg>
           </button>
           <span className="mx-6 text-xl font-medium">{quantity}</span>

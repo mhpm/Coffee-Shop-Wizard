@@ -10,14 +10,13 @@ import SearchBar from '@/components/SearchBar';
 import CategoryFilter from '@/components/CategoryFilter';
 import CustomizationPanel from '@/components/CustomizationPanel';
 import CheckoutButton from '@/components/CheckoutButton';
-import { 
-  Coffee, 
-  Extra, 
-  coffees, 
-  sizes, 
-  milkTypes, 
+import { Coffee, Extra } from '@/types/coffee';
+import {
+  coffees,
+  sizes,
+  milkTypes,
   extras,
-  categoryMapping 
+  categoryMapping,
 } from '@/data/coffeeData';
 
 export default function Home() {
@@ -106,7 +105,7 @@ export default function Home() {
         ) : showConfirmation ? (
           <div className="md:max-w-lg md:mx-auto">
             <OrderConfirmation
-              coffee={selectedCoffee}
+              coffee={selectedCoffee!}
               size={selectedSize}
               milk={selectedMilk}
               extras={selectedExtras}
