@@ -2,13 +2,7 @@
 
 import { useState } from 'react';
 import Header from '@/components/Header';
-import CoffeeGrid from '@/components/CoffeeGrid';
-import CoffeeDetails from '@/components/CoffeeDetails';
-import OrderConfirmation from '@/components/OrderConfirmation';
-import SuccessMessage from '@/components/SuccessMessage';
 import SearchBar from '@/components/SearchBar';
-import CategoryFilter from '@/components/CategoryFilter';
-import CustomizationPanel from '@/components/CustomizationPanel';
 import CheckoutButton from '@/components/CheckoutButton';
 import { Coffee, Extra } from '@/types/coffee';
 import {
@@ -18,6 +12,14 @@ import {
   extras,
   categoryMapping,
 } from '@/data/coffeeData';
+
+// Import page-specific components from the home components folder
+import CoffeeGrid from '@/app/home/components/CoffeeGrid';
+import CoffeeDetails from '@/app/home/components/CoffeeDetails';
+import OrderConfirmation from '@/app/home/components/OrderConfirmation';
+import SuccessMessage from '@/app/home/components/SuccessMessage';
+import CategoryFilter from '@/app/home/components/CategoryFilter';
+import CustomizationPanel from '@/app/home/components/CustomizationPanel';
 
 export default function Home() {
   const [selectedCoffee, setSelectedCoffee] = useState<Coffee | null>(null);
