@@ -39,8 +39,11 @@ const Header: React.FC<HeaderProps> = ({
             </svg>
           </button>
         )}
-        <h1 className="text-2xl font-bold text-foreground">{title}</h1>
+        <div>
+          <h1 className="text-2xl font-bold text-foreground">{title}</h1>
+        </div>
       </div>
+
       <div className="flex items-center space-x-2">
         <ThemeToggle />
         <button className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-neutral-700">
@@ -60,7 +63,7 @@ const Header: React.FC<HeaderProps> = ({
           </svg>
         </button>
         <div className="relative">
-          <button 
+          <button
             className="p-2 rounded-full bg-primary text-primary-foreground"
             onClick={() => setUserMenuOpen(!userMenuOpen)}
             aria-label="User menu"
@@ -80,7 +83,10 @@ const Header: React.FC<HeaderProps> = ({
               />
             </svg>
           </button>
-          <UserMenu isOpen={userMenuOpen} onClose={() => setUserMenuOpen(false)} />
+          <UserMenu
+            isOpen={userMenuOpen}
+            onClose={() => setUserMenuOpen(false)}
+          />
         </div>
       </div>
     </header>

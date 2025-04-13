@@ -2,6 +2,7 @@
 
 import { useRef, useEffect } from 'react';
 import Link from 'next/link';
+import packageInfo from '../package.json';
 
 interface UserMenuProps {
   isOpen: boolean;
@@ -110,6 +111,12 @@ const UserMenu: React.FC<UserMenuProps> = ({ isOpen, onClose }) => {
           </button>
         </li>
       </ul>
+
+      <div className="mt-2 pt-2 border-t border-gray-200 dark:border-gray-700 flex justify-center px-4 py-2">
+        <span className="px-3 py-1 text-xs font-bold bg-primary/10 text-primary rounded-full">
+          v{packageInfo.version}
+        </span>
+      </div>
     </div>
   );
 };
