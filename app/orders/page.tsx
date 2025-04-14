@@ -6,6 +6,21 @@ import { orderHistory } from './data/orderData';
 import PageHeader from './components/PageHeader';
 import FilterPanel from './components/FilterPanel';
 import OrderList from './components/OrderList';
+import { Suspense } from 'react';
+
+// Loading component for the order list
+function OrderListLoading() {
+  return (
+    <div className="p-4 space-y-4">
+      {[1, 2, 3].map((i) => (
+        <div
+          key={i}
+          className="bg-gray-200 dark:bg-gray-700 h-24 rounded-xl animate-pulse"
+        ></div>
+      ))}
+    </div>
+  );
+}
 
 const OrdersPage = () => {
   const [expandedOrder, setExpandedOrder] = useState<string | null>(null);
@@ -57,11 +72,15 @@ const OrdersPage = () => {
           />
         )}
 
-        <OrderList
-          orders={filteredOrders}
-          expandedOrder={expandedOrder}
-          toggleOrderDetails={toggleOrderDetails}
-        />
+        <div className="bg-white dark:bg-neutral-800 rounded-2xl shadow-md overflow-hidden mt-4">
+          <Suspense fallback={<OrderListLoading />}>
+            <OrderList
+              orders={filteredOrders}
+              expandedOrder={expandedOrder}
+              toggleOrderDetails={toggleOrderDetails}
+            />
+          </Suspense>
+        </div>
       </div>
     </main>
   );
