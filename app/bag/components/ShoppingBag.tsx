@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectBag, removeFromBag, updateItemQuantity } from '@/store/bagSlice'; // Import selector and actions
+import {
+  selectBag,
+  removeFromBag,
+  updateItemQuantity,
+} from '@/store/slices/bagSlice'; // Import selector and actions
 import Image from 'next/image';
 import { coffees } from '@/data/coffeeData';
 

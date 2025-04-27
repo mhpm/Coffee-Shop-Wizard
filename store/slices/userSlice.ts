@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { UserInfo } from '../types/store';
-import { RootState } from '.';
+import { UserInfo } from '../../types/store';
+import { RootState } from '..';
 
 const initialState: UserInfo = {
   id: '',

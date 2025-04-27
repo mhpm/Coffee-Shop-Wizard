@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from './index'; // Import RootState
+import { RootState } from '@/store';
 
 interface BagItem {
   id: string;
@@ -23,19 +23,18 @@ const mockBagItems: BagItem[] = [
     size: 'Medium',
     milk: 'Oat Milk',
     extras: ['Extra Shot'],
-    price: 4.50,
+    price: 4.5,
     quantity: 1,
   },
-  // Add more mock items if needed
-  // {
-  //   id: 'latte-456',
-  //   name: 'Latte',
-  //   size: 'Large',
-  //   milk: 'Whole Milk',
-  //   extras: [],
-  //   price: 5.00,
-  //   quantity: 2,
-  // },
+  {
+    id: 'latte-456',
+    name: 'Latte',
+    size: 'Large',
+    milk: 'Whole Milk',
+    extras: [],
+    price: 5.0,
+    quantity: 2,
+  },
 ];
 
 const initialState: BagState = {

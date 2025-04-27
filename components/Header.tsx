@@ -3,7 +3,7 @@ import Link from 'next/link';
 import ThemeToggle from './ThemeToggle';
 import UserMenu from './UserMenu';
 import { useSelector } from 'react-redux'; // Import useSelector
-import { selectBag } from '@/store/bagSlice'; // Import the selector
+import { selectBag } from '@/store/slices/bagSlice'; // Import the selector
 
 interface HeaderProps {
   title: string;
