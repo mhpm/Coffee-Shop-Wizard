@@ -1,13 +1,16 @@
-"use client";
+'use client';
 
 import React from 'react';
 import Header from '@/components/Header';
-import ShoppingBag from '@/components/ShoppingBag';
-import { useStore } from '@/store/useStore';
+import ShoppingBag from '@/app/bag/components/ShoppingBag';
+import { useSelector } from 'react-redux';
+import { selectBag } from '@/store/bagSlice';
 
 const BagPage = () => {
-  const bagItems = useStore((state) => state.bag.items);
-  
+  // Use useSelector with the selectBag selector
+  const bagState = useSelector(selectBag);
+  const bagItems = bagState.items; // Get items from the selected state
+
   return (
     <main className="min-h-screen bg-gradient-to-b from-background to-primary/5 dark:from-background dark:to-background">
       <div className="mx-auto p-4 max-w-md md:max-w-lg lg:max-w-xl">
@@ -16,8 +19,9 @@ const BagPage = () => {
           showBackButton={true}
           onBack={() => window.history.back()}
         />
-        
+
         <div className="bg-white dark:bg-neutral-800 rounded-2xl shadow-md overflow-hidden mt-4">
+          {/* Check length using the variable derived from Redux state */}
           {bagItems.length === 0 ? (
             <div className="p-6 text-center">
               <div className="w-20 h-20 mx-auto rounded-full bg-amber-100 dark:bg-amber-900/20 flex items-center justify-center mb-4">

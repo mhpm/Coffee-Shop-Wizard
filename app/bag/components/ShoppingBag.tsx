@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
-import { useStore } from '@/store/useStore';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectBag, removeFromBag, updateItemQuantity } from '@/store/bagSlice'; // Import selector and actions
 import Image from 'next/image';
 import { coffees } from '@/data/coffeeData';
 
 const ShoppingBag = () => {
-  const { items, total } = useStore((state) => state.bag);
-  const removeFromBag = useStore((state) => state.removeFromBag);
-  const updateItemQuantity = useStore((state) => state.updateItemQuantity);
+  const dispatch = useDispatch();
+  const { items } = useSelector(selectBag);
+
+  // Calculate total within the component
+  const total = items.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
+
   // Track which images failed to load
   const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
 
@@ -17,10 +24,19 @@ const ShoppingBag = () => {
   };
 
   const handleImageError = (name: string) => {
-    setFailedImages(prev => ({
+    setFailedImages((prev) => ({
       ...prev,
-      [name]: true
+      [name]: true,
     }));
+  };
+
+  // Handlers to dispatch actions
+  const handleRemoveItem = (id: string) => {
+    dispatch(removeFromBag(id));
+  };
+
+  const handleUpdateQuantity = (id: string, quantity: number) => {
+    dispatch(updateItemQuantity({ id, quantity }));
   };
 
   return (
@@ -30,7 +46,9 @@ const ShoppingBag = () => {
       <div className="space-y-4 mb-4">
         {items.map((item) => (
           <div
-            key={`${item.id}-${item.size}-${item.milk}`}
+            key={`${item.id}-${item.size}-${item.milk}-${JSON.stringify(
+              item.extras
+            )}`} // Make key more unique
             className="flex items-center p-3 border border-gray-200 dark:border-gray-700 rounded-xl"
           >
             <div className="relative w-16 h-16 rounded-xl overflow-hidden bg-gray-200 dark:bg-gray-700">
@@ -48,7 +66,7 @@ const ShoppingBag = () => {
                 </div>
               )}
             </div>
-            
+
             <div className="ml-3 flex-1">
               <h4 className="font-medium text-gray-900 dark:text-white">
                 {item.name}
@@ -66,7 +84,8 @@ const ShoppingBag = () => {
             <div className="flex items-center">
               <button
                 onClick={() =>
-                  updateItemQuantity(item.id, Math.max(1, item.quantity - 1))
+                  // Dispatch update action
+                  handleUpdateQuantity(item.id, Math.max(1, item.quantity - 1))
                 }
                 className="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
               >
@@ -76,7 +95,10 @@ const ShoppingBag = () => {
                 {item.quantity}
               </span>
               <button
-                onClick={() => updateItemQuantity(item.id, item.quantity + 1)}
+                onClick={() =>
+                  // Dispatch update action
+                  handleUpdateQuantity(item.id, item.quantity + 1)
+                }
                 className="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
               >
                 +
@@ -88,7 +110,7 @@ const ShoppingBag = () => {
             </span>
 
             <button
-              onClick={() => removeFromBag(item.id)}
+              onClick={() => handleRemoveItem(item.id)} // Dispatch remove action
               className="ml-2 text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300"
             >
               <svg
@@ -112,7 +134,7 @@ const ShoppingBag = () => {
         <div className="flex justify-between items-center">
           <span className="font-bold text-gray-900 dark:text-white">Total</span>
           <span className="font-bold text-amber-500 dark:text-primary">
-            ${total.toFixed(2)}
+            {/* Use the calculated total */}${total.toFixed(2)}
           </span>
         </div>
       </div>
