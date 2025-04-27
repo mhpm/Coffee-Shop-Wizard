@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import userReducer from './slices/userSlice';
-import bagReducer from './slices/bagSlice'; // Import the bagSlice reducer
+import bagReducer from './slices/bag/bagSlice'; // Import the bagSlice reducer
 import logger from 'redux-logger'; // Import the logger
 
 // Import other reducers here if you create them (e.g., bagReducer)

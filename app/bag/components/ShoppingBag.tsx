@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  selectBag,
-  removeFromBag,
-  updateItemQuantity,
-} from '@/store/slices/bagSlice'; // Import selector and actions
+import { selectBag } from '@/store/slices/bag/bagSelectors'; // Import selector and actions
 import Image from 'next/image';
 import { coffees } from '@/data/coffeeData';
+import { removeFromBag, updateItemQuantity } from '@/store/slices/bag/bagSlice';
 
 const ShoppingBag = () => {
   const dispatch = useDispatch();

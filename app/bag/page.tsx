@@ -4,7 +4,7 @@ import React from 'react';
 import Header from '@/components/Header';
 import ShoppingBag from '@/app/bag/components/ShoppingBag';
 import { useSelector } from 'react-redux';
-import { selectBag } from '@/store/slices/bagSlice';
+import { selectBag } from '@/store/slices/bag/bagSelectors';
 
 const BagPage = () => {
   // Use useSelector with the selectBag selector

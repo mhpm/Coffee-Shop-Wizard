@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'; // Import useEffect
 import Link from 'next/link';
 import ThemeToggle from './ThemeToggle';
 import UserMenu from './UserMenu';
-import { useSelector } from 'react-redux'; // Import useSelector
-import { selectBag } from '@/store/slices/bagSlice'; // Import the selector
+import { useSelector, useDispatch } from 'react-redux'; // Import useDispatch
+import {
+  selectBagStatus,
+  selectBagTotalItemsCount,
+} from '@/store/slices/bag/bagSelectors'; // Import selectors
+import { fetchBagItems } from '@/store/slices/bag/bagThunks'; // Import the thunk
+import { AppDispatch } from '@/store'; // Import AppDispatch type
 
 interface HeaderProps {
   title: string;
@@ -17,13 +22,18 @@ const Header: React.FC<HeaderProps> = ({
   onBack,
 }) => {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
-  // Get the bag state using the selector
-  const bagState = useSelector(selectBag);
-  // Calculate the total count from the bag state
-  const bagItemsCount = bagState.items.reduce(
-    (total, item) => total + item.quantity,
-    0
-  );
+  const dispatch = useDispatch<AppDispatch>(); // Get dispatch function
+
+  // Selectors
+  const bagItemsCount = useSelector(selectBagTotalItemsCount); // Use the specific selector for count
+  const status = useSelector(selectBagStatus); // Get fetch status
+
+  // Fetch bag items when header mounts if status is idle
+  useEffect(() => {
+    if (status === 'idle') {
+      dispatch(fetchBagItems());
+    }
+  }, [dispatch, status]);
 
   return (
     <header className="flex items-center justify-between py-4 mb-6">
@@ -76,9 +86,16 @@ const Header: React.FC<HeaderProps> = ({
           </svg>
 
           {/* Badge showing number of items */}
-          {bagItemsCount > 0 && (
+          {/* Show badge only if fetch succeeded and count > 0 */}
+          {status === 'succeeded' && bagItemsCount > 0 && (
             <span className="absolute -top-1 -right-1 bg-primary text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
               {bagItemsCount}
+            </span>
+          )}
+          {/* Optionally show a loading indicator on the badge */}
+          {status === 'loading' && (
+            <span className="absolute -top-1 -right-1 bg-gray-400 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center animate-pulse">
+              ...
             </span>
           )}
         </Link>
