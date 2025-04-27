@@ -1,16 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import userReducer from './slices/userSlice';
-import bagReducer from './slices/bag/bagSlice'; // Import the bagSlice reducer
-import logger from 'redux-logger'; // Import the logger
-
-// Import other reducers here if you create them (e.g., bagReducer)
+import bagReducer from './slices/bag/bagSlice';
+import logger from 'redux-logger';
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
-    bag: bagReducer, // Add the bag reducer here
-    // Add other reducers here
-    // bag: bagReducer,
+    bag: bagReducer,
   },
   // Add the middleware configuration with proper typing
   middleware: (getDefaultMiddleware) => {
